@@ -1,0 +1,104 @@
+{
+  "author": "indieui",
+  "dependencies": {
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "tailwind-merge": "3.4.0"
+  },
+  "description": "IndieUI - Modern React component library",
+  "devDependencies": {
+    "@happy-dom/global-registrator": "20.0.11",
+    "@storybook/addon-essentials": "8.6.14",
+    "@storybook/addon-interactions": "8.6.14",
+    "@storybook/addon-links": "10.1.10",
+    "@storybook/blocks": "8.6.14",
+    "@storybook/react": "10.1.10",
+    "@storybook/react-vite": "10.1.10",
+    "@storybook/test": "8.6.14",
+    "@tailwindcss/postcss": "4.1.18",
+    "@testing-library/react": "16.3.1",
+    "@types/bun": "1.3.5",
+    "@types/node": "25.0.3",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "@typescript-eslint/eslint-plugin": "8.50.1",
+    "@typescript-eslint/parser": "8.50.1",
+    "@vitejs/plugin-react": "5.1.2",
+    "ajv": "8.17.1",
+    "autoprefixer": "10.4.23",
+    "eslint": "9.39.2",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-prettier": "5.5.4",
+    "eslint-plugin-react": "7.37.5",
+    "eslint-plugin-react-hooks": "7.0.1",
+    "postcss": "8.5.6",
+    "postcss-cli": "11.0.1",
+    "prettier": "3.7.4",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "storybook": "10.1.10",
+    "tailwindcss": "4.1.18",
+    "typescript": "5.9.3",
+    "vite": "7.3.0",
+    "vite-plugin-dts": "4.5.4"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "react",
+    "components",
+    "ui",
+    "tailwind",
+    "indieui"
+  ],
+  "license": "MIT",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "name": "@indieui/components",
+  "packageManager": "bun@1.1.14",
+  "peerDependencies": {
+    "react": "18.0.0 || ^19.0.0",
+    "react-dom": "18.0.0 || ^19.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agenticindiedev/indieui"
+  },
+  "scripts": {
+    "build": "bun run build:lib && bun run build:css",
+    "build-storybook": "storybook build",
+    "build:css": "bunx postcss ./src/styles/globals.css -o ./dist/styles.css --verbose",
+    "build:lib": "vite build",
+    "dev": "storybook dev -p 6006",
+    "format:check": "prettier --check .",
+    "format:fix": "prettier --write .",
+    "lint:check": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "pre:install": "bun update --latest --recursive && bun install",
+    "prepare": "bun run build",
+    "prepare:deploy": "bun run format:fix && bun run lint:fix && bun run build",
+    "prepublishOnly": "bun run build",
+    "storybook": "storybook dev -p 6006",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "version": "0.1.0"
+}
