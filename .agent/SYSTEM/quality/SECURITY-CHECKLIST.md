@@ -49,7 +49,7 @@
 ### Dependencies
 
 - [ ] Dependencies regularly updated
-- [ ] No known vulnerabilities (npm audit)
+- [ ] No known vulnerabilities (bun audit)
 - [ ] Lock files committed
 - [ ] Minimal dependencies
 

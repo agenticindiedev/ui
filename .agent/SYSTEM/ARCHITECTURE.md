@@ -19,15 +19,15 @@ indieui is a React component library providing reusable UI components for the ag
 
 ## Tech Stack
 
-| Technology               | Version | Purpose                             |
-| ------------------------ | ------- | ----------------------------------- |
-| Next.js                  | 16.x    | Development environment & docs site |
-| React                    | 19.x    | Component framework                 |
-| TypeScript               | 5.x     | Type safety                         |
-| Tailwind CSS             | 4.x     | Styling                             |
-| Storybook                | 8.x     | Component documentation             |
-| class-variance-authority | latest  | Variant management                  |
-| Vitest                   | latest  | Testing                             |
+| Technology               | Version | Purpose                   |
+| ------------------------ | ------- | ------------------------- |
+| Bun                      | 1.x     | Package manager & runtime |
+| React                    | 19.x    | Component framework       |
+| TypeScript               | 5.x     | Type safety               |
+| Tailwind CSS             | 4.x     | Styling                   |
+| Vite                     | 7.x     | Build tool                |
+| Storybook                | 10.x    | Component documentation   |
+| class-variance-authority | latest  | Variant management        |
 
 ---
 
@@ -143,8 +143,8 @@ dist/
 Consumers can import:
 
 ```typescript
-import { Button, Card } from 'indieui';
-import 'indieui/styles.css';
+import { Button, Card } from '@indieui/components';
+import '@indieui/components/styles.css';
 ```
 
 ---

@@ -66,6 +66,6 @@ What's needed before starting.
 
 - [ ] Development setup
 - [ ] Code review process
-- [ ] Publishing to npm
+- [ ] Publishing to GitHub Packages
 - [ ] Testing guidelines
 - [ ] Storybook best practices

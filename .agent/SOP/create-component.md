@@ -9,8 +9,8 @@ This SOP covers the complete process for creating a new UI component, from initi
 
 ## Prerequisites
 
-- Node.js 20+ installed
-- Project dependencies installed (`npm install`)
+- Bun installed
+- Project dependencies installed (`bun install`)
 - Understanding of component category (primitive, composite, layout, pattern)
 
 ## Steps
@@ -225,7 +225,7 @@ Add component to the category list in `.agent/SYSTEM/ARCHITECTURE.md`.
 - [ ] All variants work as expected
 - [ ] Keyboard navigation works
 - [ ] Screen reader announces correctly
-- [ ] Tests pass (`npm test`)
+- [ ] Tests pass (`bun test`)
 - [ ] Storybook stories display correctly
 - [ ] Types are exported
 - [ ] No TypeScript errors
