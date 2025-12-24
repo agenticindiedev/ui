@@ -1,4 +1,4 @@
-# Project Summary - indieui
+# Project Summary - @agenticindiedev/ui
 
 **Purpose:** Quick overview of current project state.
 **Last Updated:** 2025-12-23

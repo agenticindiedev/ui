@@ -1,4 +1,4 @@
-# indieui
+# @agenticindiedev/ui
 
 Claude-specific entry point. Documentation in `.agent/`.
 

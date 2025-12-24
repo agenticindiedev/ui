@@ -1,4 +1,4 @@
-# indieui
+# @agenticindiedev/ui
 
 Codex-specific entry point. Documentation in `.agent/`.
 

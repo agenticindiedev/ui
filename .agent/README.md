@@ -1,6 +1,6 @@
-# indieui - Agent Documentation Hub
+# @agenticindiedev/ui - Agent Documentation Hub
 
-**Welcome to the indieui workspace!**
+**Welcome to the @agenticindiedev/ui workspace!**
 
 This is the `.agent/` folder containing AI agent documentation, session tracking, and project rules.
 

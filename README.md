@@ -1,4 +1,4 @@
-# IndieUI
+# AgenticIndieDevUI
 
 A modern React component library built with TypeScript, Tailwind CSS v4, and class-variance-authority.
 

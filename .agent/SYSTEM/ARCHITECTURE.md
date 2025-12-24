@@ -1,4 +1,4 @@
-# Architecture - indieui
+# Architecture - @agenticindiedev/ui
 
 **Purpose:** Document what IS implemented (not what WILL BE).
 **Last Updated:** 2025-12-23
@@ -7,7 +7,7 @@
 
 ## Overview
 
-indieui is a React component library providing reusable UI components for the agenticindiedev ecosystem. Components are designed to be:
+@agenticindiedev/ui is a React component library providing reusable UI components for the agenticindiedev ecosystem. Components are designed to be:
 
 - Framework-agnostic (works with Next.js, Vite, etc.)
 - Fully typed with TypeScript
@@ -34,7 +34,7 @@ indieui is a React component library providing reusable UI components for the ag
 ## Project Structure
 
 ```
-indieui/
+ui/
 ├── .agent/                  # AI agent documentation
 ├── .storybook/              # Storybook configuration
 ├── src/

@@ -1,11 +1,11 @@
 {
-  "author": "indieui",
+  "author": "agenticindiedev",
   "dependencies": {
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "tailwind-merge": "3.4.0"
   },
-  "description": "IndieUI - Modern React component library",
+  "description": "@agenticindiedev/ui - Modern React component library",
   "devDependencies": {
     "@happy-dom/global-registrator": "20.0.11",
     "@storybook/addon-essentials": "8.6.14",
@@ -59,7 +59,7 @@
     "components",
     "ui",
     "tailwind",
-    "indieui"
+    "agenticindiedev"
   ],
   "license": "MIT",
   "main": "./dist/index.cjs",
@@ -76,7 +76,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/agenticindiedev/indieui"
+    "url": "https://github.com/agenticindiedev/ui"
   },
   "scripts": {
     "build": "bun run build:lib && bun run build:css",

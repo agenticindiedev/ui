@@ -1,4 +1,4 @@
-# Project Map - indieui
+# Project Map - @agenticindiedev/ui
 
 **Purpose:** Quick reference for project structure and responsibilities.
 **Last Updated:** 2025-12-23
@@ -8,7 +8,7 @@
 ## Directory Overview
 
 ```
-indieui/
+ui/
 ├── .agent/              # AI documentation (you are here)
 ├── src/                 # Source code
 │   ├── components/      # UI components

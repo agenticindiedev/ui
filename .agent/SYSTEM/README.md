@@ -1,6 +1,6 @@
 # SYSTEM - Core Documentation
 
-This folder contains the core documentation for the indieui project.
+This folder contains the core documentation for the @agenticindiedev/ui project.
 
 ## Contents
 

@@ -1,4 +1,4 @@
-# indieui
+# @agenticindiedev/ui
 
 This file provides entry points for AI agents.
 
