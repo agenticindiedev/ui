@@ -18,9 +18,9 @@ describe('Badge', () => {
     expect(getByText('Default').className).toContain('bg-gray');
   });
 
-  it('applies primary variant classes', () => {
-    const { getByText } = render(<Badge variant="primary">Primary</Badge>);
-    expect(getByText('Primary').className).toContain('bg-primary');
+  it('applies default variant classes', () => {
+    const { getByText } = render(<Badge variant="default">Default</Badge>);
+    expect(getByText('Default').className).toContain('bg-primary');
   });
 
   it('applies success variant classes', () => {
@@ -33,9 +33,11 @@ describe('Badge', () => {
     expect(getByText('Warning').className).toContain('bg-yellow');
   });
 
-  it('applies error variant classes', () => {
-    const { getByText } = render(<Badge variant="error">Error</Badge>);
-    expect(getByText('Error').className).toContain('bg-red');
+  it('applies destructive variant classes', () => {
+    const { getByText } = render(
+      <Badge variant="destructive">Destructive</Badge>
+    );
+    expect(getByText('Destructive').className).toContain('bg-destructive');
   });
 
   it('applies outline variant classes', () => {

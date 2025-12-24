@@ -4,27 +4,25 @@ import { cn } from '@/utils/cn';
 import type { BadgeProps } from './Badge.types';
 
 export const badgeVariants = cva(
-  'inline-flex items-center rounded-full font-medium transition-colors',
+  'inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
   {
     variants: {
       variant: {
         default:
-          'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200',
-        primary:
-          'bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-200',
+          'border-transparent bg-primary text-primary-foreground hover:bg-primary/80',
         secondary:
-          'bg-gray-200 text-gray-900 dark:bg-gray-700 dark:text-gray-100',
+          'border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80',
+        destructive:
+          'border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80',
+        outline: 'text-foreground',
         success:
-          'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
+          'border-transparent bg-green-500 text-white hover:bg-green-600',
         warning:
-          'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
-        error: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',
-        outline:
-          'border border-gray-300 text-gray-700 dark:border-gray-600 dark:text-gray-300',
+          'border-transparent bg-yellow-500 text-white hover:bg-yellow-600',
       },
       size: {
         sm: 'px-2 py-0.5 text-xs',
-        md: 'px-2.5 py-0.5 text-sm',
+        md: 'px-2.5 py-0.5 text-xs',
         lg: 'px-3 py-1 text-sm',
       },
     },

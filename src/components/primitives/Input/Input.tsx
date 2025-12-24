@@ -4,16 +4,16 @@ import { cn } from '@/utils/cn';
 import type { InputProps } from './Input.types';
 
 export const inputVariants = cva(
-  'flex w-full rounded-md border bg-white text-gray-900 transition-colors placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-gray-900 dark:text-gray-100 dark:placeholder:text-gray-500',
+  'flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
   {
     variants: {
       variant: {
-        default: 'border-gray-300 dark:border-gray-700',
-        error: 'border-red-500 dark:border-red-500',
+        default: '',
+        error: 'border-destructive',
       },
       size: {
-        sm: 'h-8 px-3 text-sm',
-        md: 'h-10 px-4 text-sm',
+        sm: 'h-8 px-2 text-xs',
+        md: 'h-10 px-3 text-sm',
         lg: 'h-12 px-4 text-base',
       },
     },
@@ -67,7 +67,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           </div>
         )}
         {error && errorMessage && (
-          <p className="mt-1 text-sm text-red-500">{errorMessage}</p>
+          <p className="mt-1 text-sm text-destructive">{errorMessage}</p>
         )}
       </div>
     );

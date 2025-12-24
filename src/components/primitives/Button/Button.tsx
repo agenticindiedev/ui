@@ -1,6 +1,7 @@
-import * as React from 'react';
-import { cva } from 'class-variance-authority';
 import { cn } from '@/utils/cn';
+import { Slot } from '@radix-ui/react-slot';
+import { cva } from 'class-variance-authority';
+import * as React from 'react';
 import type { ButtonProps } from './Button.types';
 
 export const buttonVariants = cva(
@@ -64,6 +65,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       className,
       variant,
       size,
+      asChild = false,
       isLoading,
       leftIcon,
       rightIcon,
@@ -73,8 +75,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) => {
+    const Comp = asChild ? Slot : 'button';
     return (
-      <button
+      <Comp
         ref={ref}
         className={cn(buttonVariants({ variant, size }), className)}
         disabled={isLoading || disabled}
@@ -89,7 +92,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             {rightIcon && <span className="shrink-0">{rightIcon}</span>}
           </>
         )}
-      </button>
+      </Comp>
     );
   }
 );

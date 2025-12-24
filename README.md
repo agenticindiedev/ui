@@ -1,6 +1,6 @@
 # AgenticIndieDevUI
 
-A modern React component library built with TypeScript, Tailwind CSS v4, and class-variance-authority.
+A modern React component library built with TypeScript, Tailwind CSS v4, Radix UI, and shadcn/ui patterns.
 
 ## Installation
 
@@ -65,22 +65,155 @@ function App() {
 }
 ```
 
+## Customization
+
+All components accept a `className` prop that merges seamlessly with existing styles, allowing you to customize components easily:
+
+```tsx
+<Button
+  variant="primary"
+  className="bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg hover:scale-105"
+>
+  Custom Styled Button
+</Button>
+```
+
+### Theming
+
+The package uses CSS variables for theming. You can customize colors by overriding CSS variables:
+
+```css
+:root {
+  --primary: 199.1 89.1% 48.2%;
+  --primary-foreground: 210 40% 98%;
+  /* ... */
+}
+```
+
+Dark mode is supported via the `dark` class on your HTML element.
+
 ## Components
 
 ### Primitives
 
+- **Avatar** - User avatar with image and fallback
 - **Badge** - Status indicators and labels
-- **Button** - Interactive buttons with variants
+- **Button** - Interactive buttons with variants and asChild support
 - **Card** - Container component with header, content, and footer
-- **Checkbox** - Checkbox input with label support
-- **Input** - Text input fields
-- **Select** - Dropdown select component
+- **Checkbox** - Accessible checkbox with Radix UI
+- **Input** - Text input fields with icon support
+- **Label** - Form labels
+- **Progress** - Progress indicator
+- **RadioGroup** - Radio button groups
+- **Select** - Accessible dropdown select with Radix UI
+- **Separator** - Visual separator
+- **Skeleton** - Loading placeholder
+- **Slider** - Range slider input
+- **Switch** - Toggle switch
+- **Textarea** - Multi-line text input
+
+### Composites
+
+- **Alert** - Alert messages with variants
+- **Dialog** - Modal dialogs
+- **DropdownMenu** - Dropdown menus with submenus
+- **Popover** - Popover overlays
+- **Table** - Table components (Header, Body, Row, Cell, etc.)
+- **Tabs** - Tab navigation
+- **Tooltip** - Tooltip overlays
+
+### Patterns
+
+- **DataTable** - Advanced data table with sorting, filtering, pagination, and action buttons
+
+## DataTable Usage
+
+The DataTable component accepts arrays for columns and rows, making it easy to display dynamic data with action buttons:
+
+```tsx
+import { DataTable } from '@agenticindiedev/ui';
+import { DropdownMenu, DropdownMenuItem } from '@agenticindiedev/ui';
+import type { ColumnDef } from '@tanstack/react-table';
+
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+}
+
+const columns: ColumnDef<User>[] = [
+  {
+    accessorKey: 'name',
+    header: 'Name',
+  },
+  {
+    accessorKey: 'email',
+    header: 'Email',
+  },
+  {
+    accessorKey: 'role',
+    header: 'Role',
+  },
+  {
+    id: 'actions',
+    cell: ({ row }) => {
+      const user = row.original;
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost">Actions</Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem onClick={() => editUser(user.id)}>
+              Edit
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => deleteUser(user.id)}>
+              Delete
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
+    },
+  },
+];
+
+const users: User[] = [
+  { id: '1', name: 'John Doe', email: 'john@example.com', role: 'Admin' },
+  { id: '2', name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
+];
+
+function UsersTable() {
+  return (
+    <DataTable
+      columns={columns}
+      data={users}
+      searchable
+      searchPlaceholder="Search users..."
+      pagination
+    />
+  );
+}
+```
+
+The DataTable supports:
+
+- **Array-based columns**: Define columns as an array of `ColumnDef` objects
+- **Array-based data**: Pass your data as an array
+- **Action buttons**: Add action columns with custom cell renderers
+- **Search**: Built-in global search functionality
+- **Sorting**: Click column headers to sort
+- **Pagination**: Automatic pagination controls
+- **TypeScript**: Full type safety with generics
 
 ## Tech Stack
 
 - **React 19** - UI framework
 - **TypeScript 5.9** - Type safety
 - **Tailwind CSS 4** - Utility-first CSS
+- **Radix UI** - Accessible component primitives
+- **TanStack Table** - Powerful table functionality
+- **class-variance-authority** - Variant management
 - **Vite 7** - Build tool
 - **Storybook 10** - Component development
 - **Bun** - Package manager and runtime
@@ -90,19 +223,56 @@ function App() {
 ```
 src/
 ├── components/
-│   └── primitives/       # Base UI components
-│       ├── Badge/
-│       ├── Button/
-│       ├── Card/
-│       ├── Checkbox/
-│       ├── Input/
-│       └── Select/
+│   ├── primitives/       # Base UI components
+│   │   ├── Avatar/
+│   │   ├── Badge/
+│   │   ├── Button/
+│   │   ├── Card/
+│   │   ├── Checkbox/
+│   │   ├── Input/
+│   │   ├── Label/
+│   │   ├── Progress/
+│   │   ├── RadioGroup/
+│   │   ├── Select/
+│   │   ├── Separator/
+│   │   ├── Skeleton/
+│   │   ├── Slider/
+│   │   ├── Switch/
+│   │   └── Textarea/
+│   ├── composites/       # Composed components
+│   │   ├── Alert/
+│   │   ├── Dialog/
+│   │   ├── DropdownMenu/
+│   │   ├── Popover/
+│   │   ├── Table/
+│   │   ├── Tabs/
+│   │   └── Tooltip/
+│   └── patterns/         # Complex patterns
+│       └── DataTable/
 ├── styles/
 │   └── globals.css       # Tailwind CSS entry point
 ├── utils/
 │   └── cn.ts             # Class name utility
 └── index.ts              # Public exports
 ```
+
+## Migration from DaisyUI
+
+If you were using DaisyUI, note that this package has migrated to shadcn/ui patterns with Radix UI primitives. The API remains similar, but components now use Radix UI for better accessibility and TypeScript support.
+
+### Breaking Changes
+
+- DaisyUI classes are no longer available
+- Components now use CSS variables for theming instead of DaisyUI themes
+- Some component APIs have been updated to match shadcn/ui patterns
+
+### Benefits
+
+- ✅ Better accessibility (Radix UI primitives)
+- ✅ Full TypeScript support
+- ✅ More customization options
+- ✅ Better performance
+- ✅ Active maintenance and updates
 
 ## License
 

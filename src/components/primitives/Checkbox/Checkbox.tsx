@@ -1,20 +1,22 @@
-import * as React from 'react';
-import { cva } from 'class-variance-authority';
 import { cn } from '@/utils/cn';
+import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
+import { cva } from 'class-variance-authority';
+import { Check } from 'lucide-react';
+import * as React from 'react';
 import type { CheckboxProps } from './Checkbox.types';
 
 export const checkboxVariants = cva(
-  'shrink-0 rounded border bg-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 checked:bg-primary-500 checked:border-primary-500 dark:bg-gray-900 dark:checked:bg-primary-600 dark:checked:border-primary-600',
+  'peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground',
   {
     variants: {
       variant: {
-        default: 'border-gray-300 dark:border-gray-700',
-        error: 'border-red-500 dark:border-red-500',
+        default: '',
+        error: 'border-destructive',
       },
       size: {
         sm: 'h-4 w-4',
-        md: 'h-5 w-5',
-        lg: 'h-6 w-6',
+        md: 'h-4 w-4',
+        lg: 'h-5 w-5',
       },
     },
     defaultVariants: {
@@ -24,7 +26,10 @@ export const checkboxVariants = cva(
   }
 );
 
-export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
+export const Checkbox = React.forwardRef<
+  React.ElementRef<typeof CheckboxPrimitive.Root>,
+  CheckboxProps
+>(
   (
     { className, variant, size, label, description, error, id, ...props },
     ref
@@ -34,29 +39,33 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 
     return (
       <div className="flex items-start gap-3">
-        <input
+        <CheckboxPrimitive.Root
           ref={ref}
-          type="checkbox"
           id={checkboxId}
           className={cn(
             checkboxVariants({ variant: error ? 'error' : variant, size }),
             className
           )}
-          aria-invalid={error}
           {...props}
-        />
+        >
+          <CheckboxPrimitive.Indicator
+            className={cn('flex items-center justify-center text-current')}
+          >
+            <Check className="h-4 w-4" />
+          </CheckboxPrimitive.Indicator>
+        </CheckboxPrimitive.Root>
         {(label || description) && (
           <div className="flex flex-col">
             {label && (
               <label
                 htmlFor={checkboxId}
-                className="text-sm font-medium text-gray-900 dark:text-gray-100 cursor-pointer"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
               >
                 {label}
               </label>
             )}
             {description && (
-              <span className="text-sm text-gray-500 dark:text-gray-400">
+              <span className="text-sm text-muted-foreground">
                 {description}
               </span>
             )}

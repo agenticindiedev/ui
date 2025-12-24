@@ -1,3 +1,4 @@
+import type * as SelectPrimitive from '@radix-ui/react-select';
 import type { VariantProps } from 'class-variance-authority';
 import type { selectVariants } from './Select';
 
@@ -9,7 +10,7 @@ export interface SelectOption {
 
 export interface SelectProps
   extends
-    Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'size'>,
+    React.ComponentPropsWithoutRef<typeof SelectPrimitive.Root>,
     VariantProps<typeof selectVariants> {
   options: SelectOption[];
   placeholder?: string;
