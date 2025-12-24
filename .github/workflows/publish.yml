@@ -68,8 +68,11 @@ jobs:
           fi
           echo "✅ Build output verified"
 
+      - name: Configure npm to ignore scripts
+        run: echo "ignore-scripts=true" >> .npmrc
+
       - name: Publish to NPM registry
-        run: npm publish --access public --provenance
+        run: npm publish --access public --provenance --ignore-scripts
 
       - name: Create Release Summary
         run: |
