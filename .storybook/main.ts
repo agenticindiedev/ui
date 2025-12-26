@@ -21,6 +21,11 @@ const config: StorybookConfig = {
       quietDeps: true,
       silenceDeprecations: ['import'],
     };
+
+    // Increase chunk size warning limit for Storybook (large bundles are expected)
+    config.build = config.build || {};
+    config.build.chunkSizeWarningLimit = 1500;
+
     return config;
   },
 
