@@ -5,31 +5,31 @@ import * as React from 'react';
 import type { ButtonProps } from './Button.types';
 
 export const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
         primary:
-          'bg-primary-500 text-white hover:bg-primary-600 active:bg-primary-700 dark:bg-primary-600 dark:hover:bg-primary-700 dark:active:bg-primary-800',
+          'bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:shadow-md active:bg-primary/80 active:shadow-sm',
         secondary:
-          'bg-gray-100 text-gray-900 hover:bg-gray-200 active:bg-gray-300 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700 dark:active:bg-gray-600',
+          'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 hover:shadow-md active:bg-secondary/70 active:shadow-sm',
         ghost:
-          'bg-transparent text-gray-700 hover:bg-gray-100 active:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-800 dark:active:bg-gray-700',
+          'bg-transparent text-foreground hover:bg-accent hover:text-accent-foreground active:bg-accent/80',
         outline:
-          'bg-transparent border border-gray-300 text-gray-700 hover:bg-gray-50 active:bg-gray-100 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800 dark:active:bg-gray-700',
+          'bg-transparent border border-input text-foreground shadow-sm hover:bg-accent hover:text-accent-foreground hover:border-accent active:bg-accent/80',
         destructive:
-          'bg-red-500 text-white hover:bg-red-600 active:bg-red-700 dark:bg-red-600 dark:hover:bg-red-700 dark:active:bg-red-800',
-        link: 'bg-transparent text-primary-600 underline-offset-4 hover:underline dark:text-primary-400',
+          'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 hover:shadow-md active:bg-destructive/80 active:shadow-sm',
+        link: 'bg-transparent text-primary underline-offset-4 hover:underline hover:text-primary/80',
         'soft-primary':
-          'bg-primary-500/15 text-primary-600 hover:bg-primary-500/25 active:bg-primary-500/35 dark:bg-primary-400/15 dark:text-primary-400 dark:hover:bg-primary-400/25 dark:active:bg-primary-400/35',
+          'bg-primary/10 text-primary hover:bg-primary/20 active:bg-primary/30',
         'soft-secondary':
-          'bg-gray-500/15 text-gray-700 hover:bg-gray-500/25 active:bg-gray-500/35 dark:bg-gray-400/15 dark:text-gray-300 dark:hover:bg-gray-400/25 dark:active:bg-gray-400/35',
+          'bg-secondary/10 text-secondary-foreground hover:bg-secondary/20 active:bg-secondary/30',
         'soft-success':
-          'bg-green-500/15 text-green-600 hover:bg-green-500/25 active:bg-green-500/35 dark:bg-green-400/15 dark:text-green-400 dark:hover:bg-green-400/25 dark:active:bg-green-400/35',
+          'bg-green-500/10 text-green-600 hover:bg-green-500/20 active:bg-green-500/30 dark:text-green-400',
         'soft-warning':
-          'bg-yellow-500/15 text-yellow-600 hover:bg-yellow-500/25 active:bg-yellow-500/35 dark:bg-yellow-400/15 dark:text-yellow-400 dark:hover:bg-yellow-400/25 dark:active:bg-yellow-400/35',
+          'bg-yellow-500/10 text-yellow-600 hover:bg-yellow-500/20 active:bg-yellow-500/30 dark:text-yellow-400',
         'soft-destructive':
-          'bg-red-500/15 text-red-600 hover:bg-red-500/25 active:bg-red-500/35 dark:bg-red-400/15 dark:text-red-400 dark:hover:bg-red-400/25 dark:active:bg-red-400/35',
+          'bg-destructive/10 text-destructive hover:bg-destructive/20 active:bg-destructive/30',
       },
       size: {
         sm: 'h-8 px-3 text-sm',

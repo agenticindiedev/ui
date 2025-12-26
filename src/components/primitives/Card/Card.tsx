@@ -9,16 +9,16 @@ import type {
 } from './Card.types';
 
 export const cardVariants = cva(
-  'rounded-lg border bg-card text-card-foreground shadow-sm',
+  'rounded-lg border bg-card text-card-foreground shadow-sm transition-all duration-200',
   {
     variants: {
       variant: {
         default: '',
         elevated: 'shadow-md',
-        outline: '',
+        outline: 'border-2',
       },
       hover: {
-        true: 'transition-all hover:shadow-lg cursor-pointer',
+        true: 'hover:shadow-lg hover:border-accent cursor-pointer',
         false: '',
       },
       padding: {

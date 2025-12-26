@@ -246,3 +246,11 @@ export type { DataTableProps } from './components/patterns/DataTable';
 
 // Utilities
 export { cn } from './utils/cn';
+export {
+  getTheme,
+  setTheme,
+  initTheme,
+  watchSystemPreference,
+  toggleTheme,
+} from './utils/theme';
+export type { Theme } from './themes';

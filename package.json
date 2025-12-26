@@ -78,7 +78,9 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./styles.css": "./dist/styles.css"
+    "./styles.css": "./dist/styles.css",
+    "./themes/*": "./dist/themes/*.scss",
+    "./tailwind.preset": "./dist/tailwind.preset.js"
   },
   "files": [
     "dist"
@@ -117,10 +119,12 @@
     "url": "https://github.com/agenticindiedev/ui"
   },
   "scripts": {
-    "build": "bun run build:lib && bun run build:css",
+    "build": "bun run build:lib && bun run build:css && bun run build:themes && bun run build:preset",
     "build-storybook": "storybook build",
     "build:css": "bunx postcss ./src/styles/globals.scss -o ./dist/styles.css --verbose",
     "build:lib": "./scripts/build-lib.sh",
+    "build:themes": "node scripts/build-themes.mjs",
+    "build:preset": "node scripts/build-preset.mjs",
     "deploy:storybook": "bun run build-storybook",
     "dev": "storybook dev -p 6006",
     "format:check": "prettier --check .",
@@ -142,5 +146,5 @@
   ],
   "type": "module",
   "types": "./dist/index.d.ts",
-  "version": "0.2.4"
+  "version": "0.3.0"
 }
