@@ -1,33 +1,31 @@
 import { cn } from '@/utils/cn';
+import { focusStyles, transitionColors } from '@/utils/styles';
 import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 
-export const linkVariants = cva(
-  'transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
-  {
-    variants: {
-      variant: {
-        default:
-          'text-foreground hover:text-primary dark:text-foreground dark:hover:text-primary',
-        primary:
-          'text-primary hover:text-primary/80 dark:text-primary dark:hover:text-primary/80',
-        secondary:
-          'text-muted-foreground hover:text-foreground dark:text-muted-foreground dark:hover:text-foreground',
-        muted:
-          'text-muted-foreground hover:text-foreground dark:text-muted-foreground dark:hover:text-foreground',
-      },
-      underline: {
-        none: 'no-underline',
-        hover: 'no-underline hover:underline',
-        always: 'underline',
-      },
+export const linkVariants = cva(`${transitionColors} ${focusStyles}`, {
+  variants: {
+    variant: {
+      default:
+        'text-foreground hover:text-primary dark:text-foreground dark:hover:text-primary',
+      primary:
+        'text-primary hover:text-primary/80 dark:text-primary dark:hover:text-primary/80',
+      secondary:
+        'text-muted-foreground hover:text-foreground dark:text-muted-foreground dark:hover:text-foreground',
+      muted:
+        'text-muted-foreground hover:text-foreground dark:text-muted-foreground dark:hover:text-foreground',
     },
-    defaultVariants: {
-      variant: 'default',
-      underline: 'hover',
+    underline: {
+      none: 'no-underline',
+      hover: 'no-underline hover:underline',
+      always: 'underline',
     },
-  }
-);
+  },
+  defaultVariants: {
+    variant: 'default',
+    underline: 'hover',
+  },
+});
 
 export interface LinkProps
   extends

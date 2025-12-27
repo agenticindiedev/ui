@@ -1,4 +1,5 @@
 import { cn } from '@/utils/cn';
+import { disabledCursorStyles, focusStyles } from '@/utils/styles';
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 import { cva } from 'class-variance-authority';
 import { Check } from 'lucide-react';
@@ -6,7 +7,7 @@ import * as React from 'react';
 import type { CheckboxProps } from './Checkbox.types';
 
 export const checkboxVariants = cva(
-  'peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground',
+  `peer h-4 w-4 shrink-0 rounded-sm border border-primary ${focusStyles} ${disabledCursorStyles} data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground`,
   {
     variants: {
       variant: {
@@ -36,6 +37,7 @@ export const Checkbox = React.forwardRef<
   ) => {
     const generatedId = React.useId();
     const checkboxId = id || generatedId;
+    const descriptionId = `${checkboxId}-description`;
 
     return (
       <div className="flex items-start gap-3">
@@ -46,6 +48,7 @@ export const Checkbox = React.forwardRef<
             checkboxVariants({ variant: error ? 'error' : variant, size }),
             className
           )}
+          aria-describedby={description ? descriptionId : undefined}
           {...props}
         >
           <CheckboxPrimitive.Indicator
@@ -65,7 +68,10 @@ export const Checkbox = React.forwardRef<
               </label>
             )}
             {description && (
-              <span className="text-sm text-muted-foreground">
+              <span
+                id={descriptionId}
+                className="text-sm text-muted-foreground"
+              >
                 {description}
               </span>
             )}

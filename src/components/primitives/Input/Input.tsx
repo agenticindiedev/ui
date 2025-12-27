@@ -1,10 +1,15 @@
 import * as React from 'react';
 import { cva } from 'class-variance-authority';
 import { cn } from '@/utils/cn';
+import {
+  disabledCursorStyles,
+  inputFocusStyles,
+  transitionColors,
+} from '@/utils/styles';
 import type { InputProps } from './Input.types';
 
 export const inputVariants = cva(
-  'flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:border-ring hover:border-input/80 disabled:cursor-not-allowed disabled:opacity-50',
+  `flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground ${transitionColors} ${inputFocusStyles} ${disabledCursorStyles}`,
   {
     variants: {
       variant: {
@@ -35,10 +40,14 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       error,
       errorMessage,
       type = 'text',
+      id,
       ...props
     },
     ref
   ) => {
+    const generatedId = React.useId();
+    const inputId = id || generatedId;
+    const errorId = `${inputId}-error`;
     const hasLeftIcon = !!leftIcon;
     const hasRightIcon = !!rightIcon;
 
@@ -51,6 +60,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         )}
         <input
           ref={ref}
+          id={inputId}
           type={type}
           className={cn(
             inputVariants({ variant: error ? 'error' : variant, size }),
@@ -59,6 +69,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             className
           )}
           aria-invalid={error}
+          aria-describedby={error && errorMessage ? errorId : undefined}
           {...props}
         />
         {hasRightIcon && (
@@ -67,7 +78,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           </div>
         )}
         {error && errorMessage && (
-          <p className="mt-1 text-sm text-destructive">{errorMessage}</p>
+          <p id={errorId} className="mt-1 text-sm text-destructive">
+            {errorMessage}
+          </p>
         )}
       </div>
     );

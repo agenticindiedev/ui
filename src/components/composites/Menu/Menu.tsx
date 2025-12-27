@@ -1,5 +1,6 @@
 import { Link } from '@/components/primitives/Link';
 import { cn } from '@/utils/cn';
+import { focusStyles, transitionColors } from '@/utils/styles';
 import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 
@@ -15,27 +16,24 @@ export const menuVariants = cva('', {
   },
 });
 
-export const menuItemVariants = cva(
-  'transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
-  {
-    variants: {
-      orientation: {
-        vertical:
-          'block px-4 py-2 text-sm rounded-md hover:bg-accent hover:text-accent-foreground',
-        horizontal:
-          'inline-block px-4 py-2 text-sm rounded-md hover:bg-accent hover:text-accent-foreground',
-      },
-      active: {
-        true: 'bg-accent text-accent-foreground font-medium',
-        false: '',
-      },
+export const menuItemVariants = cva(`${transitionColors} ${focusStyles}`, {
+  variants: {
+    orientation: {
+      vertical:
+        'block px-4 py-2 text-sm rounded-md hover:bg-accent hover:text-accent-foreground',
+      horizontal:
+        'inline-block px-4 py-2 text-sm rounded-md hover:bg-accent hover:text-accent-foreground',
     },
-    defaultVariants: {
-      orientation: 'vertical',
-      active: false,
+    active: {
+      true: 'bg-accent text-accent-foreground font-medium',
+      false: '',
     },
-  }
-);
+  },
+  defaultVariants: {
+    orientation: 'vertical',
+    active: false,
+  },
+});
 
 export interface MenuItem {
   label: string;

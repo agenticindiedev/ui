@@ -1,4 +1,5 @@
 import { cn } from '@/utils/cn';
+import { disabledCursorStyles, focusOutlineStyles } from '@/utils/styles';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { cva } from 'class-variance-authority';
 import { Check, ChevronDown, ChevronUp } from 'lucide-react';
@@ -6,7 +7,7 @@ import * as React from 'react';
 import type { SelectProps } from './Select.types';
 
 export const selectVariants = cva(
-  'flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1',
+  `flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground ${focusOutlineStyles} focus:border-ring ${disabledCursorStyles} [&>span]:line-clamp-1`,
   {
     variants: {
       variant: {
@@ -43,6 +44,9 @@ const Select = React.forwardRef<
     },
     ref
   ) => {
+    const generatedId = React.useId();
+    const errorId = `${generatedId}-error`;
+
     return (
       <div className="w-full">
         <SelectPrimitive.Root {...props}>
@@ -52,6 +56,8 @@ const Select = React.forwardRef<
               selectVariants({ variant: error ? 'error' : variant, size }),
               className
             )}
+            aria-invalid={error}
+            aria-describedby={error && errorMessage ? errorId : undefined}
           >
             <SelectPrimitive.Value placeholder={placeholder} />
             <SelectPrimitive.Icon asChild>
@@ -67,22 +73,20 @@ const Select = React.forwardRef<
               <SelectPrimitive.ScrollUpButton className="flex h-6 cursor-default items-center justify-center bg-popover text-popover-foreground">
                 <ChevronUp className="h-4 w-4" />
               </SelectPrimitive.ScrollUpButton>
-              <SelectPrimitive.Viewport className="p-1">
+              <SelectPrimitive.Viewport className="max-h-60 overflow-y-auto p-1">
                 {options.map((option) => (
                   <SelectPrimitive.Item
                     key={option.value}
                     value={option.value}
                     disabled={option.disabled}
-                    className="relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
+                    className="flex w-full cursor-default select-none items-center justify-between rounded-sm border border-border py-1.5 px-3 mb-1 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 last:mb-0"
                   >
-                    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
-                      <SelectPrimitive.ItemIndicator>
-                        <Check className="h-4 w-4" />
-                      </SelectPrimitive.ItemIndicator>
-                    </span>
                     <SelectPrimitive.ItemText>
                       {option.label}
                     </SelectPrimitive.ItemText>
+                    <SelectPrimitive.ItemIndicator>
+                      <Check className="ml-4 h-5 w-5" />
+                    </SelectPrimitive.ItemIndicator>
                   </SelectPrimitive.Item>
                 ))}
               </SelectPrimitive.Viewport>
@@ -93,7 +97,9 @@ const Select = React.forwardRef<
           </SelectPrimitive.Portal>
         </SelectPrimitive.Root>
         {error && errorMessage && (
-          <p className="mt-1 text-sm text-destructive">{errorMessage}</p>
+          <p id={errorId} className="mt-1 text-sm text-destructive">
+            {errorMessage}
+          </p>
         )}
       </div>
     );
