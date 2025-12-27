@@ -22,6 +22,11 @@ export const Default: Story = {
   args: {
     value: 50,
   },
+  render: (args) => (
+    <div className="w-64">
+      <Progress {...args} />
+    </div>
+  ),
 };
 
 export const Values: Story = {

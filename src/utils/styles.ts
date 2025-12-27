@@ -10,6 +10,7 @@ export const focusOutlineStyles = 'focus:outline-none';
 // Disabled state styles
 export const disabledStyles =
   'disabled:pointer-events-none disabled:opacity-50';
+
 export const disabledCursorStyles =
   'disabled:cursor-not-allowed disabled:opacity-50';
 
@@ -19,4 +20,8 @@ export const inputFocusStyles =
 
 // Transitions
 export const transitionColors = 'transition-colors';
+
 export const transitionAll = 'transition-all duration-200';
+
+// Cursor styles for clickable elements
+export const cursorPointer = 'cursor-pointer';

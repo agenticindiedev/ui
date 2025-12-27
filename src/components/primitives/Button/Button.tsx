@@ -1,12 +1,17 @@
 import { cn } from '@/utils/cn';
-import { disabledStyles, focusStyles, transitionAll } from '@/utils/styles';
+import {
+  cursorPointer,
+  disabledStyles,
+  focusStyles,
+  transitionAll,
+} from '@/utils/styles';
 import { Slot } from '@radix-ui/react-slot';
 import { cva } from 'class-variance-authority';
 import * as React from 'react';
 import type { ButtonProps } from './Button.types';
 
 export const buttonVariants = cva(
-  `inline-flex items-center justify-center gap-2 rounded-md font-medium ${transitionAll} ${focusStyles} ${disabledStyles}`,
+  `inline-flex items-center justify-center gap-2 rounded-md font-medium ${transitionAll} ${focusStyles} ${disabledStyles} ${cursorPointer}`,
   {
     variants: {
       variant: {

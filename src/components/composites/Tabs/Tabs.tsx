@@ -1,5 +1,10 @@
 import { cn } from '@/utils/cn';
-import { disabledStyles, focusStyles, transitionAll } from '@/utils/styles';
+import {
+  cursorPointer,
+  disabledStyles,
+  focusStyles,
+  transitionAll,
+} from '@/utils/styles';
 import * as TabsPrimitive from '@radix-ui/react-tabs';
 import * as React from 'react';
 
@@ -27,7 +32,7 @@ const TabsTrigger = React.forwardRef<
   <TabsPrimitive.Trigger
     ref={ref}
     className={cn(
-      `inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ${transitionAll} ${focusStyles} ${disabledStyles} data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:font-semibold data-[state=active]:shadow-sm text-muted-foreground`,
+      `inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ${transitionAll} ${focusStyles} ${disabledStyles} ${cursorPointer} data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:font-semibold data-[state=active]:shadow-sm text-muted-foreground`,
       className
     )}
     {...props}
