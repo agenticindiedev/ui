@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { describe, it, expect, vi } from 'bun:test';
+import { describe, expect, it, vi } from 'bun:test';
 import { Button } from './Button';
 
 describe('Button', () => {
@@ -46,42 +46,42 @@ describe('Button', () => {
 
   it('applies variant classes', () => {
     const { getByRole } = render(<Button variant="destructive">Delete</Button>);
-    expect(getByRole('button').className).toContain('bg-red');
+    expect(getByRole('button').className).toContain('bg-destructive');
   });
 
   it('applies soft-primary variant classes', () => {
     const { getByRole } = render(
       <Button variant="soft-primary">Soft Primary</Button>
     );
-    expect(getByRole('button').className).toContain('bg-primary-500/15');
+    expect(getByRole('button').className).toContain('bg-primary/10');
   });
 
   it('applies soft-success variant classes', () => {
     const { getByRole } = render(
       <Button variant="soft-success">Soft Success</Button>
     );
-    expect(getByRole('button').className).toContain('bg-green-500/15');
+    expect(getByRole('button').className).toContain('bg-green-500/10');
   });
 
   it('applies soft-warning variant classes', () => {
     const { getByRole } = render(
       <Button variant="soft-warning">Soft Warning</Button>
     );
-    expect(getByRole('button').className).toContain('bg-yellow-500/15');
+    expect(getByRole('button').className).toContain('bg-yellow-500/10');
   });
 
   it('applies soft-destructive variant classes', () => {
     const { getByRole } = render(
       <Button variant="soft-destructive">Soft Destructive</Button>
     );
-    expect(getByRole('button').className).toContain('bg-red-500/15');
+    expect(getByRole('button').className).toContain('bg-destructive/10');
   });
 
   it('applies soft-secondary variant classes', () => {
     const { getByRole } = render(
       <Button variant="soft-secondary">Soft Secondary</Button>
     );
-    expect(getByRole('button').className).toContain('bg-gray-500/15');
+    expect(getByRole('button').className).toContain('bg-secondary/10');
   });
 
   it('applies size classes', () => {
