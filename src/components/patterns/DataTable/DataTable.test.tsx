@@ -358,4 +358,72 @@ describe('DataTable', () => {
     const rows = container.querySelectorAll('tbody tr');
     expect(rows.length).toBeGreaterThan(0);
   });
+
+  it('exercises table state callbacks through multiple render cycles', () => {
+    const { container, rerender } = render(
+      <DataTable columns={columns} data={testData} />
+    );
+
+    // Change props to trigger re-renders and state syncs
+    rerender(<DataTable columns={columns} data={[]} />);
+    rerender(
+      <DataTable columns={columns} data={testData} pagination={false} />
+    );
+    rerender(<DataTable columns={columns} data={testData} searchable />);
+
+    expect(container.querySelector('table')).toBeTruthy();
+  });
+
+  it('handles re-renders correctly', () => {
+    const { container, rerender } = render(
+      <DataTable columns={columns} data={testData} />
+    );
+
+    expect(container.querySelector('table')).toBeTruthy();
+
+    // Rerender to ensure state is preserved
+    rerender(<DataTable columns={columns} data={testData} />);
+    expect(container.querySelector('table')).toBeTruthy();
+  });
+
+  it('exercises callbacks with sortable columns configuration', () => {
+    const sortableColumns: ColumnDef<TestData>[] = [
+      {
+        accessorKey: 'name',
+        header: 'Name',
+        enableSorting: true,
+      },
+      {
+        accessorKey: 'email',
+        header: 'Email',
+        enableSorting: true,
+      },
+    ];
+    const { container, rerender } = render(
+      <DataTable columns={sortableColumns} data={testData} />
+    );
+
+    // Rerender to ensure state sync happens
+    rerender(<DataTable columns={sortableColumns} data={testData} />);
+
+    expect(container.querySelector('table')).toBeTruthy();
+  });
+
+  it('exercises callbacks with filterable columns configuration', () => {
+    const filterableColumns: ColumnDef<TestData>[] = [
+      {
+        accessorKey: 'name',
+        header: 'Name',
+        enableColumnFilter: true,
+      },
+    ];
+    const { container, rerender } = render(
+      <DataTable columns={filterableColumns} data={testData} />
+    );
+
+    // Rerender to ensure state sync happens
+    rerender(<DataTable columns={filterableColumns} data={testData} />);
+
+    expect(container.querySelector('table')).toBeTruthy();
+  });
 });

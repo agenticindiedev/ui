@@ -66,7 +66,8 @@ const Menu = React.forwardRef<HTMLElement, MenuProps>(
                 menuItemVariants({ orientation, active: item.active }),
                 item.disabled &&
                   'opacity-50 cursor-not-allowed pointer-events-none',
-                index % 2 === 0 ? 'bg-background' : 'bg-muted/30'
+                !item.active &&
+                  (index % 2 === 0 ? 'bg-background' : 'bg-muted/30')
               )}
             >
               {item.label}
