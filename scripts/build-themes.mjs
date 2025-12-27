@@ -59,14 +59,14 @@ function generateThemeSCSS(themeName, themeConfig, oppositeThemeConfig) {
   // Theme SCSS files are self-contained with Tailwind import
   // Include both :root (default) and opposite theme selector for dynamic switching
   let scss = "@import 'tailwindcss';\n\n";
-  
+
   // Default theme in :root
   scss += ':root {\n';
   for (const [key, value] of Object.entries(themeConfig)) {
     scss += `  --${key}: ${value};\n`;
   }
   scss += '}\n\n';
-  
+
   // Opposite theme for dynamic switching
   if (themeName === 'light') {
     // light.scss: .dark selector for dark theme
@@ -83,7 +83,7 @@ function generateThemeSCSS(themeName, themeConfig, oppositeThemeConfig) {
     }
     scss += '}\n\n';
   }
-  
+
   // Add keyframes (needed for accordion and other components)
   scss += '@keyframes accordion-down {\n';
   scss += '  from { height: 0; }\n';
@@ -93,7 +93,7 @@ function generateThemeSCSS(themeName, themeConfig, oppositeThemeConfig) {
   scss += '  from { height: var(--radix-accordion-content-height); }\n';
   scss += '  to { height: 0; }\n';
   scss += '}\n';
-  
+
   return scss;
 }
 
@@ -106,12 +106,13 @@ for (const [themeName, themeConfig] of Object.entries(themes)) {
   // Get opposite theme config
   const oppositeThemeName = themeName === 'light' ? 'dark' : 'light';
   const oppositeThemeConfig = themes[oppositeThemeName];
-  
+
   const scss = generateThemeSCSS(themeName, themeConfig, oppositeThemeConfig);
   const outputPath = join(distThemesDir, `${themeName}.scss`);
   writeFileSync(outputPath, scss, 'utf-8');
-  console.log(`✅ Generated dist/themes/${themeName}.scss (with ${oppositeThemeName} theme support)`);
+  console.log(
+    `✅ Generated dist/themes/${themeName}.scss (with ${oppositeThemeName} theme support)`
+  );
 }
 
 console.log('✅ All themes built successfully!');
-
